@@ -196,8 +196,8 @@ void VehicleControlDeviceImplementation::storeObject(CreatureObject* player, boo
 	/*if (!controlledObject->isInQuadTree())
 		return;*/
 
-	if (!force (player->isInCombat() || player->isDead()))
-		return;
+	// (!force (player->isInCombat() || player->isDead()))
+	//eturn;
 
 	if (player->isRidingMount() && player->getParent() == controlledObject) {
 		if (!force && !player->checkCooldownRecovery("mount_dismount"))
