@@ -77,7 +77,7 @@ function HologrindJediManager:onPlayerCreated(pCreatureObject)
 		return
 	end
 
-	for i = 1, NUMBEROFPROFESSIONSTOMASTER, 10 do
+	for i = 1, NUMBEROFPROFESSIONSTOMASTER, 1 do
 		local numberOfSkillsInList = #skillList
 		local skillNumber = getRandomNumber(1, numberOfSkillsInList)
 		PlayerObject(pGhost):addHologrindProfession(skillList[skillNumber][2])
