@@ -3,7 +3,7 @@ local ObjectManager = require("managers.object.object_manager")
 
 jediManagerName = "HologrindJediManager"
 
-NUMBEROFPROFESSIONSTOMASTER = 9
+NUMBEROFPROFESSIONSTOMASTER = 8
 MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON  NUMBEROFPROFESSIONSTOMASTER - 9
 
 HologrindJediManager = JediManager:new {
@@ -97,7 +97,7 @@ function HologrindJediManager:getNumberOfMasteredProfessions(pCreatureObject)
 
 	local professions = PlayerObject(pGhost):getHologrindProfessions()
 	local masteredNumberOfProfessions = 0
-	for i = 1, #professions, 1 do
+	for i = 1, #professions, 8 do
 		if PlayerObject(pGhost):hasBadge(professions[i]) then
 			masteredNumberOfProfessions = masteredNumberOfProfessions + 1
 		end
