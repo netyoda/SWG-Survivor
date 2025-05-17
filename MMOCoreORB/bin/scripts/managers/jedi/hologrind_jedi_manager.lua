@@ -106,12 +106,21 @@ function HologrindJediManager:onPlayerCreated(pCreatureObject)
 		return
 	end
 
-	for i = 1, #professions, 1 do
+	local unmastered = {}
+
+-- Build a list of unmastered professions
+for i = 1, #professions, 1 do
 	if not PlayerObject(pGhost):hasBadge(professions[i]) then
-		local professionText = self:getProfessionStringIdFromBadgeNumber(professions[i])
-		CreatureObject(pCreatureObject):sendSystemMessageWithTO("@jedi_spam:holocron_light_information", "@skl_n:" .. professionText)
-		break -- only show one
+		table.insert(unmastered, professions[i])
 	end
+end
+
+-- Randomly choose one unmastered profession to reveal
+if #unmastered > 0 then
+	local randomIndex = getRandomNumber(1, #unmastered)
+	local badgeId = unmastered[randomIndex]
+	local professionText = self:getProfessionStringIdFromBadgeNumber(badgeId)
+	CreatureObject(pCreatureObject):sendSystemMessageWithTO("@jedi_spam:holocron_light_information", "@skl_n:" .. professionText)
 end
 
 -- Check and count the number of mastered hologrind professions.
