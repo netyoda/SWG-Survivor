@@ -61,7 +61,7 @@ int DroidItemStorageModuleDataComponent::getStorageRating() {
 
 void DroidItemStorageModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* droid) {
 	// convert module rating to actual rating
-	alm->insertAttribute( "storage_module", rating > 100 ? 100 : rating );
+	alm->insertAttribute( "storage_module", rating > 10 ? 10 : rating );
 }
 
 String DroidItemStorageModuleDataComponent::toString() const {
