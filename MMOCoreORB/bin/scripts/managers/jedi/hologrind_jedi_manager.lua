@@ -106,11 +106,11 @@ function HologrindJediManager:onPlayerCreated(pCreatureObject)
 		return
 	end
 
-	for i = 1, NUMBEROFPROFESSIONSTOMASTER, 1 do
-		local numberOfSkillsInList = #skillList
-		local skillNumber = getRandomNumber(1, numberOfSkillsInList)
-		PlayerObject(pGhost):addHologrindProfession(skillList[skillNumber][2])
-		table.remove(skillList, skillNumber)
+	for i = 1, #professions, 1 do
+	if not PlayerObject(pGhost):hasBadge(professions[i]) then
+		local professionText = self:getProfessionStringIdFromBadgeNumber(professions[i])
+		CreatureObject(pCreatureObject):sendSystemMessageWithTO("@jedi_spam:holocron_light_information", "@skl_n:" .. professionText)
+		break -- only show one
 	end
 end
 
