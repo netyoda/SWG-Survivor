@@ -50,8 +50,8 @@ object_tangible_component_droid_item_storage_module_4 = object_tangible_componen
 	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1},
 	experimentalGroupTitles = {"null", "null", "exp_durability", "null", "exp_effectiveness", "exp_effectiveness"},
 	experimentalSubGroupTitles = {"null", "null", "decayrate", "hitpoints", "mechanism_quality", "storage_module"},
-	experimentalMin = {0, 0, 5, 1000, -10, 7},
-	experimentalMax = {0, 0, 15, 1000, 15, 9},
+	experimentalMin = {0, 0, 5, 1000, -10, 41},
+	experimentalMax = {0, 0, 15, 1000, 15, 60},
 	experimentalPrecision = {0, 0, 0, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 4, 1, 1},
 }
