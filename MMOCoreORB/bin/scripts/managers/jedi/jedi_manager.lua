@@ -11,7 +11,7 @@ if _TEST then
 	ITEMTHEATERDATAPAD = 2
 end
 
-jediProgressionType = VILLAGEJEDIPROGRESSION
+jediProgressionType = HOLOGRINDJEDIPROGRESSION
 
 jediManagerName = "JediManager"
 
@@ -85,5 +85,12 @@ function JediManager:onFSTreeCompleted(pCreatureObject, branch)
 	-- Default behaviour for the onFSTreesCompleted event, do nothing.
 end
 
-return JediManager
+function JediManager:awardFSpoint(pCreatureObject)
+	-- Default behaviour for the onFSTreesCompleted event, do nothing.
+end
 
+function JediManager:removeFSpoint(pCreatureObject)
+	-- Default behaviour for the onFSTreesCompleted event, do nothing.
+end
+
+return JediManager
