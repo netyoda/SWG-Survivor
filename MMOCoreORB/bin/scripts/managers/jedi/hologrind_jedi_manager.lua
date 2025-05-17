@@ -4,7 +4,7 @@ local ObjectManager = require("managers.object.object_manager")
 jediManagerName = "HologrindJediManager"
 
 NUMBEROFPROFESSIONSTOMASTER = 10
-MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 0
+MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 9
 
 USEDHOLOCRON = "used_holocron"
 HOLOCRONCOOLDOWNTIME = 24 * 60 * 60 * 1000 -- 24 hours
