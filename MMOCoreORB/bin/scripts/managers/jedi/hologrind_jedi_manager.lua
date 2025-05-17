@@ -299,7 +299,7 @@ function HologrindJediManager:useItem(pSceneObject, itemType, pCreatureObject)
 		else
 			local isSilent = self:sendHolocronMessage(pCreatureObject)
 			if isSilent then
-				return false
+				return
 			else
 				SceneObject(pSceneObject):destroyObjectFromWorld()
 				SceneObject(pSceneObject):destroyObjectFromDatabase()
