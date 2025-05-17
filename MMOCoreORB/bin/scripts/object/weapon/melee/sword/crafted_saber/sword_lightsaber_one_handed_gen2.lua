@@ -99,10 +99,10 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen2 = objec
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 25,
-	actionAttackCost = 47,
-	mindAttackCost = 45,
-	forceCost = 24,
+	healthAttackCost = 35,
+	actionAttackCost = 40,
+	mindAttackCost = 20,
+	forceCost = 12,
 
 	pointBlankRange = 0,
 	pointBlankAccuracy = 20,
@@ -113,19 +113,19 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen2 = objec
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	minDamage = 80,
-	maxDamage = 170,
+	minDamage = 105,
+	maxDamage = 195,
 
-	attackSpeed = 4.5,
+	attackSpeed = 5.1,
 
-	woundsRatio = 19,
+	woundsRatio = 15,
 
 	defenderToughnessModifiers = { "lightsaber_toughness" },
 	
 	noTrade = 1,
-	
+
 	childObjects = {
-		{templateFile = "object/tangible/inventory/lightsaber_inventory_2.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4}
+		{templateFile = "object/tangible/inventory/lightsaber_inventory_1.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4}
 	},
 
 	numberExperimentalProperties = {1, 1, 2, 2, 2, 2, 2, 1, 1, 1},
@@ -133,10 +133,11 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen2 = objec
 	experimentalWeights = {1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1},
 	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "expEffeciency", "expEffeciency", "expEffeciency"},
 	experimentalSubGroupTitles = {"null", "null", "mindamage", "maxdamage", "attackspeed", "woundchance", "forcecost", "attackhealthcost", "attackactioncost", "attackmindcost"},
-	experimentalMin = {0, 0, 80, 170, 4.5, 13, 28, 25, 47, 45},
-	experimentalMax = {0, 0, 100, 210, 4.2, 25, 24, 20, 32, 40},
+	experimentalMin = {0, 0, 105, 195, 5.1, 10, 15, 35, 40, 20},
+	experimentalMax = {0, 0, 125, 235, 4.8, 20, 12, 25, 25, 15},
 	experimentalPrecision = {0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
 }
+
 
 ObjectTemplates:addTemplate(object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen2, "object/weapon/melee/sword/crafted_saber/sword_lightsaber_one_handed_gen2.iff")
