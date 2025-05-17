@@ -260,53 +260,58 @@ end
 
 -- Find out and send the response from the holocron to the player
 -- @param pCreatureObject pointer to the creature object of the player who used the holocron.
+-- Fix for holocron not being consumed after showing a profession
+
+-- Your existing useItem handler needs to be verified against your logic in sendHolocronMessage()
+-- Let's correct the logic to guarantee only ONE profession shows and the holocron is consumed.
+
+-- Fix sendHolocronMessage to only show 1 unmastered profession and return proper boolean
 function HologrindJediManager:sendHolocronMessage(pCreatureObject)
 	if self:getNumberOfMasteredProfessions(pCreatureObject) >= MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON then
-		-- The Holocron is quiet. The ancients' knowledge of the Force will no longer assist you on your journey. You must continue seeking on your own.
 		CreatureObject(pCreatureObject):sendSystemMessage("@jedi_spam:holocron_quiet")
-		return true
-	else
-		local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
-
-		if (pGhost == nil) then
-			return false
-		end
-
-		local professions = PlayerObject(pGhost):getHologrindProfessions()
-		for i = 1, #professions, 1 do
-			if not PlayerObject(pGhost):hasBadge(professions[i]) then
-				local professionText = self:getProfessionStringIdFromBadgeNumber(professions[i])
-				CreatureObject(pCreatureObject):sendSystemMessageWithTO("@jedi_spam:holocron_light_information", "@skl_n:" .. professionText)
-			end
-		end
-
-		return false
+		return true -- don't consume
 	end
+
+	local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
+	if (pGhost == nil) then
+		return true -- don't consume
+	end
+
+	local professions = PlayerObject(pGhost):getHologrindProfessions()
+	local unmastered = {}
+	for i = 1, #professions, 1 do
+		if not PlayerObject(pGhost):hasBadge(professions[i]) then
+			table.insert(unmastered, professions[i])
+		end
+	end
+
+	if #unmastered > 0 then
+		local randomIndex = getRandomNumber(1, #unmastered)
+		local badgeId = unmastered[randomIndex]
+		local professionText = self:getProfessionStringIdFromBadgeNumber(badgeId)
+		CreatureObject(pCreatureObject):sendSystemMessageWithTO("@jedi_spam:holocron_light_information", "@skl_n:" .. professionText)
+	end
+
+	return false -- consume
 end
 
--- Handling of the useItem event.
--- @param pSceneObject pointer to the item object.
--- @param itemType the type of item that is used.
--- @param pCreatureObject pointer to the creature object that used the item.
+-- Ensure useItem destroys the holocron after valid use
 function HologrindJediManager:useItem(pSceneObject, itemType, pCreatureObject)
-	if (pCreatureObject == nil or pSceneObject == nil) then
-		return
-	end
+	if (pCreatureObject == nil or pSceneObject == nil) then return end
 
 	if itemType == ITEMHOLOCRON then
 		if CreatureObject(pCreatureObject):hasSkill("force_title_jedi_rank_02") then
 			VillageJediManagerHolocron.useHolocron(pSceneObject, pCreatureObject)
 		else
 			local isSilent = self:sendHolocronMessage(pCreatureObject)
-			if isSilent then
-				return
-			else
+			if not isSilent then
 				SceneObject(pSceneObject):destroyObjectFromWorld()
 				SceneObject(pSceneObject):destroyObjectFromDatabase()
 			end
 		end
 	end
 end
+
 
 function HologrindJediManager:canLearnSkill(pPlayer, skillName)
 	return true
